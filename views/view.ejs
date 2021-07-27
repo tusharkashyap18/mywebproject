@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <div class="fixed-action-btn">
+        <a href="/stories/add" class="btn-floating btn-large waves-effect waves-light red"><i class="fas fa-plus"></i></a>
+     </div>
+        <nav class="grey darken-3">
+            <div class="nav-wrapper container">
+                <a href="/dashboard" class="brand-logo center">The ScoopBook</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger show-on-large"><i class="fas fa-bars"></i></a>
+                <ul class="sidenav" id="mobile-demo">
+                    <li><a href="/dashboard">Dashboard</a></li>
+                   <li><a href="/stories/my-story">My Stories</a></li> 
+                    <li><a href="/stories/add">Add a New Story</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+<% if(data.length==0){ %>
+<div class="container">
+<h3>Add Story</h3>    
+<div class="row">
+    
+        <% } %>
+        <% if (data.length>0) { %>
+            <div class="container">
+                    
+                <div class="row">
+                    <form action="/stories/<%= data[0]._id %>" method="POST" class="col s12">
+                
+
+               
+            <div class="row">
+                <div class="input-field">
+                    <h3><%= data[0].title %></h3>
+                    <textarea readonly id="body" rows="80" name="body"><%= data[0].body %> </textarea>
+                </div>
+            </div>
+            <h6 align="right"><b>By- <%= data[0].user.displayName %></b></h6>
+            <div class="row">
+                <a href="/dashboard" class="btn orange">Back to Dashboard</a>
+            </div>
+            <div class="row">
+                <label
+            </div>
+        </form>
+        <% } %>
+        
+    
+</div>
+
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
+        integrity="sha256-bEIQpI72w9NJuIVhTLFUF2/8uxl0u5800r8ddViuv+o=" crossorigin="anonymous"></script>
+    <script>
+        M.Sidenav.init(document.querySelector('.sidenav'))
+        M.FormSelect.init(document.querySelector('#status'))
+        CKEDITOR.replace('body', {
+            height:['500px'] ,
+            plugins: 'wysiwygarea, toolbar, basicstyles, link'
+           
+        })
+    </script>
+    <style>
+        .fa {
+    padding: 5px;
+    font-size: 10px;
+    width: 20px;
+    text-align: center;
+    text-decoration: none;
+        }
+        
+        footer {
+            text-align: center;
+            margin: 100px;
+            padding: 10px;  
+            width: auto;
+            color: black;
+            font-family: 'Arvo', serif;
+        }
+    </style>
+    <footer><b>Made by Tushar Kashyap</b>
+        <br>
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="https://www.linkedin.com/in/tusharkashyap18/" class="fa fa-linkedin"></a>
+        </br>
+
+    </footer>
+</body>
+</html>

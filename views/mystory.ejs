@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="/js/asyncCalls.js"></script>
+    <title><%= pageTitle %></title>
+</head>
+<body>
+   <div class="fixed-action-btn">
+    <a href="/stories/add" class="btn-floating btn-large waves-effect waves-light red"><i class="fas fa-plus"></i></a>
+ </div>
+    <nav class="grey darken-3">
+        <div class="nav-wrapper container">
+            <a href="/dashboard" class="brand-logo center">The ScoopBook</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger show-on-large"><i class="fas fa-bars"></i></a>
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="/dashboard">Dashboard</a></li>
+               <li><a href="/stories/my-story">My Stories</a></li> 
+                <li><a href="/stories/add">Add a New Story</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+<div class="container">
+    <div class="parent-wrapper flex-col">
+        <div class="heading"> <h3>My Stories</h3> </div>  
+        <div class="flex-row">
+            <div class="name">Welcome, <%= name %> </div>
+        </div>
+    </div>
+    <center><p><b>Write you own stories</b></p></center>
+    <% if(stories.length==0) { %>
+        <p>No stories have been created.</p>
+    <% } %>
+    <% if(stories.length>0) { %>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Created</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+        <% for(var i=0;i<stories.length; i++) { %>
+            <% story=stories[i]; %>
+            <tr>
+                <td><b> <a href="/stories/view/<%=story._id%>"><%= story.title %></a></b> </td>
+                <td> <p> <%= story.createdAt %></p> </td>
+                <td><span class="dash-status"><%= story.status %></td>
+                    <td>
+                        <a href="/stories/edit/<%=story._id%>" class="btn btn-float">
+                            <i class="fas fa-edit"></i>
+                        </a>
+        
+                            <button type="button" class="btn red" id="<%= story._id %>" onclick="deleteStory(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                       </td>
+            </tr>
+      <% } %>
+            </tbody>
+            </table>
+         <% } %> 
+    
+
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
+        integrity="sha256-bEIQpI72w9NJuIVhTLFUF2/8uxl0u5800r8ddViuv+o=" crossorigin="anonymous"></script>
+    <script>
+        M.Sidenav.init(document.querySelector('.sidenav'))
+        M.FormSelect.init(document.querySelector('#status'))
+       
+    </script>
+    <style>
+        .fa {
+    padding: 5px;
+    font-size: 10px;
+    width: 20px;
+    text-align: center;
+    text-decoration: none;
+        }
+        
+        footer {
+            text-align: center;
+            margin: 100px;
+            padding: 10px;  
+            width: auto;
+            color: black;
+            font-family: 'Arvo', serif;
+        }
+    </style>
+    <footer><b>Made by Tushar Kashyap</b>
+        <br>
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="https://www.linkedin.com/in/tusharkashyap18/" class="fa fa-linkedin"></a>
+        </br>
+
+    </footer>
+
+
+    
+</body>
+</html>

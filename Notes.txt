@@ -1,0 +1,15 @@
+<!-- To insert Image -->
+
+  <div class="parent-wrapper flex-col">
+        <div class="heading"> <h2>Dashboard</h2> </div>  
+        <div class="flex-row">
+            <img src="<%= story.user.image %>" alt="profile picture" class="circle responsive-img profile-picture">
+            <div class="name">Welcome, <%= name %> </div>
+        </div>
+    </div>
+
+
+<------------------------------>
+
+
+
