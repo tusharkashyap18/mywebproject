@@ -5,8 +5,7 @@ const mongoose = require('mongoose');
 const passport=require('passport');
 const session=require('express-session');
 const MongoStore=require('connect-mongo')(session);
-const PORT=3000;
-const port = process.env.port || 3000
+const PORT=process.env.port || 3000;
 const MONGODB_URI="mongodb+srv://Prince:12345@cluster0.enirt.mongodb.net/Stories?retryWrites=true&w=majority";
 const indexRoutes=require('./routes/index');
 const authRoutes=require('./routes/auth');
